@@ -1,6 +1,5 @@
 ### Ask answer1
 GET http://localhost:3000/key1
-
 # POST https://atma-api-bxae.onrender.com/api/v2/chat
 ### Ask answer2 Cuadrado de 9
 GET http://localhost:3000/key2
@@ -9,33 +8,35 @@ GET http://localhost:3000/key3
 ### Ask answer4 (pata tiene perro)
 GET http://localhost:3000/key4
 
+
+
 ### Send answer1
 POST http://localhost:3000/key1
 Content-Type: application/json
 
 {
-   "answer": "42"
+   "key1": "42"
 }
 ### Send answer2
 POST http://localhost:3000/key2
 Content-Type: application/json
 
 {
-   "answer": "81"
+   "key2": "81"
 }
 ### Send answer3
 POST http://localhost:3000/key3
 Content-Type: application/json
 
 {
-   "answer": "30"
+   "key3": "30"
 }
 ### Send answer4
 POST http://localhost:3000/key4
 Content-Type: application/json
 
 {
-   "answer": "4"
+   "key4": "4"
 }
 
 ### Send decript
