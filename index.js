@@ -76,12 +76,12 @@ app.get('/', getUser, (req, res) => {
     and take note of the responses.<br><br>
     When you unlock all the 4 keys, you can decrypt it:<br>
     POST /decrypt
-    {
-      "key1": "Value of the answer",
-      "key2": "Value of the answer",
-      "key3": "Value of the answer",
-      "key4": "Value of the answer"
-   }
+    {<br>
+      "key1": "Value of the answer",<br>
+      "key2": "Value of the answer",<br>
+      "key3": "Value of the answer",<br>
+      "key4": "Value of the answer"<br>
+   }<br><br>
   `;
   res.send(message);
 });
