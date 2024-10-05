@@ -103,44 +103,44 @@ app.get('/key4', getUser, (req, res) => {
 
 // Enviar respuesta a la pregunta
 app.post('/key1', getUser, (req, res) => {
-  const { answer } = req.body;
-  validateAnswer(req.userId, 'key1', answer);
+  const { key1 } = req.body;
+  validateAnswer(req.userId, 'key1', key1);
   const user = users[req.userId];
-  res.json({ status: user.key1.status === 'pass' ? 'resp correcta' : 'resp incorrecta' });
+  res.json({ status: user.key1.status === 'pass' ? 'Success! you can now use key1: A1 ' : 'Wrong Answer!' });
 });
 
 app.post('/key2', getUser, (req, res) => {
-  const { answer } = req.body;
-  validateAnswer(req.userId, 'key2', answer);
+  const { key2 } = req.body;
+  validateAnswer(req.userId, 'key2', key2);
   const user = users[req.userId];
-  res.json({ status: user.key2.status === 'pass' ? 'resp correcta' : 'resp incorrecta' });
+  res.json({ status: user.key2.status === 'pass' ? 'Success! you can now use key2: JJ' : 'Wrong Answer!' });
 });
 
 app.post('/key3', getUser, (req, res) => {
-  const { answer } = req.body;
-  validateAnswer(req.userId, 'key3', answer);
+  const { key3 } = req.body;
+  validateAnswer(req.userId, 'key3', key3);
   const user = users[req.userId];
-  res.json({ status: user.key3.status === 'pass' ? 'resp correcta' : 'resp incorrecta' });
+  res.json({ status: user.key3.status === 'pass' ? 'Success! you can now use key3: 9w' : 'Wrong Answer!' });
 });
 
 app.post('/key4', getUser, (req, res) => {
-  const { answer } = req.body;
-  validateAnswer(req.userId, 'key4', answer);
+  const { key4 } = req.body;
+  validateAnswer(req.userId, 'key4', key4);
   const user = users[req.userId];
-  res.json({ status: user.key4.status === 'pass' ? 'resp correcta' : 'resp incorrecta' });
+  res.json({ status: user.key4.status === 'pass' ? 'Success! you can now use key4: 01' : 'Wrong Answer!' });
 });
 
-// Endpoint para desencriptar el mensaje si el usuario está listo
+
 app.post('/decript', getUser, (req, res) => {
   const user = users[req.userId];
 
   if (user.readyForDecript) {
     const { key1, key2, key3, key4 } = user;
     const seed = key1.value + key2.value + key3.value + key4.value;
-    const decryptedMessage = encryptMessage(seed); // Desencriptar con la clave
-    res.json({ message: 'Feliz cumpleaños!', encryptedMessage: decryptedMessage });
+    const decryptedMessage = encryptMessage(seed);
+    res.json({ message: 'Happy Nerd Birthday!!!', encryptedMessage: decryptedMessage });
   } else {
-    res.status(400).json({ message: 'Responde todas las preguntas correctamente para obtener el mensaje.' });
+    res.status(400).json({ message: 'First unlock 4 keys.' });
   }
 });
 

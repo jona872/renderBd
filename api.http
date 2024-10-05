@@ -1,11 +1,50 @@
+### Ask answer1
 GET http://localhost:3000/key1
 
-
 # POST https://atma-api-bxae.onrender.com/api/v2/chat
+### Ask answer2 Cuadrado de 9
+GET http://localhost:3000/key2
+### Ask answer3 (dias tiene 1 mes)
+GET http://localhost:3000/key3
+### Ask answer4 (pata tiene perro)
+GET http://localhost:3000/key4
 
+### Send answer1
 POST http://localhost:3000/key1
 Content-Type: application/json
 
 {
-   "answer": "123"
+   "answer": "42"
+}
+### Send answer2
+POST http://localhost:3000/key2
+Content-Type: application/json
+
+{
+   "answer": "81"
+}
+### Send answer3
+POST http://localhost:3000/key3
+Content-Type: application/json
+
+{
+   "answer": "30"
+}
+### Send answer4
+POST http://localhost:3000/key4
+Content-Type: application/json
+
+{
+   "answer": "4"
+}
+
+### Send decript
+POST http://localhost:3000/decript
+Content-Type: application/json
+
+{
+   "key1": "A1",
+   "key2": "JJ",
+   "key3": "9w",
+   "key4": "01"
 }
