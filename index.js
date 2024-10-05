@@ -12,8 +12,8 @@ const users = {};
 const questions = [
   { question: "How many bits are needed to represent the number 2024 in binary?", answer: 11 },
   { question: "A car accelerates uniformly from rest to 60 m/s in 10 seconds. What is the acceleration (in m/s²)?", answer: 6 },
-  { question: "In a binary tree, how many child nodes can a node have at most?", answer: 2 },
-  { question: "In Morse code, what letter is represented by a single dot?", answer: "e" }
+  { question: "How many degrees is the angel between the hands of a clock at 3:00?", answer: 90 },
+  { question: "In a Cartesian coordinate system, what is the distance between the points (3,4) and (0,0)?", answer: 5 }
 ];
 
 // Función para encriptar el mensaje con una clave
@@ -164,16 +164,34 @@ app.post('/key4', getUser, (req, res) => {
 
 app.post('/decript', getUser, (req, res) => {
   const user = users[req.userId];
+  const { key1, key2, key3, key4 } = req.body;
 
   if (user.readyForDecript) {
-    const { key1, key2, key3, key4 } = user;
-    const seed = key1.value + key2.value + key3.value + key4.value;
-    const decryptedMessage = encryptMessage(seed);
-    res.json({ message: 'Happy Nerd Birthday!!!', encryptedMessage: decryptedMessage });
+    // Verificar que las claves proporcionadas sean las correctas
+    if (key1 === "A1" && key2 === "JJ" && key3 === "9w" && key4 === "01") {
+      const seed = key1 + key2 + key3 + key4;
+      const decryptedMessage = encryptMessage(seed);
+      res.json({ message: '🎉🎂 Happy Nerd Birthday!!! 🧠🔒✨', encryptedMessage: decryptedMessage });
+    } else {
+      res.status(400).json({ message: 'The provided keys are incorrect.' });
+    }
   } else {
-    res.status(400).json({ message: 'First unlock 4 keys.' });
+    res.status(400).json({ message: 'First unlock all 4 keys.' });
   }
 });
+
+// app.post('/decript', getUser, (req, res) => {
+//   const user = users[req.userId];
+
+//   if (user.readyForDecript) {
+//     const { key1, key2, key3, key4 } = user;
+//     const seed = key1.value + key2.value + key3.value + key4.value;
+//     const decryptedMessage = encryptMessage(seed);
+//     res.json({ message: 'Happy Nerd Birthday!!!', encryptedMessage: decryptedMessage });
+//   } else {
+//     res.status(400).json({ message: 'First unlock 4 keys.' });
+//   }
+// });
 
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
