@@ -1,0 +1,11 @@
+GET http://localhost:3000/key1
+
+
+# POST https://atma-api-bxae.onrender.com/api/v2/chat
+
+POST http://localhost:3000/key1
+Content-Type: application/json
+
+{
+   "answer": "123"
+}
