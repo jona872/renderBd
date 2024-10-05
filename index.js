@@ -5,10 +5,8 @@ const port = 3000;
 
 app.use(express.json());
 
-// Estado de usuarios, almacenamos en memoria para este ejemplo
 const users = {};
 
-// Lista de preguntas con sus respuestas
 const questions = [
   { question: "How many bits are needed to represent the number 2024 in binary?", answer: 11 },
   { question: "A car accelerates uniformly from rest to 60 m/s in 10 seconds. What is the acceleration (in m/s²)?", answer: 6 },
@@ -16,17 +14,16 @@ const questions = [
   { question: "In a Cartesian coordinate system, what is the distance between the points (3,4) and (0,0)?", answer: 5 }
 ];
 
-// Función para encriptar el mensaje con una clave
 function encryptMessage(seed) {
-  const cipher = crypto.createCipher('aes-256-cbc', seed); // Semilla es la clave
-  let encrypted = cipher.update('Feliz cumpleaños!', 'utf8', 'hex');
+  const cipher = crypto.createCipher('aes-256-cbc', seed);
+  let encrypted = cipher.update('🎉🎂 Happy Nerd Birthday!!! 🧠🔒✨', 'utf8', 'hex');
   encrypted += cipher.final('hex');
   return encrypted;
 }
 
 // Generar un ID único para el usuario (en este caso usaremos un timestamp como ID)
 function generateUserId() {
-  return Date.now().toString(36);  // ID único basado en el timestamp
+  return Date.now().toString(36);
 }
 
 // Verificar respuestas y actualizar el estado del usuario
@@ -35,7 +32,6 @@ function validateAnswer(userId, key, answer) {
   const questionIndex = parseInt(key.replace('key', '')) - 1;
   const correctAnswer = questions[questionIndex].answer;
 
-  // Verificamos si la respuesta es un número o una cadena de texto y comparamos
   if (!isNaN(answer)) {
     if (parseInt(answer) === correctAnswer) {
       user[key] = { status: 'pass', value: answer };
@@ -95,7 +91,6 @@ app.get('/', getUser, (req, res) => {
   res.send(message);
 });
 
-// Pregunta correspondiente a cada key
 app.get('/key1', getUser, (req, res) => {
   const user = users[req.userId];
   if (user.key1.status === 'fail') {
@@ -132,7 +127,6 @@ app.get('/key4', getUser, (req, res) => {
   }
 });
 
-// Enviar respuesta a la pregunta
 app.post('/key1', getUser, (req, res) => {
   const { key1 } = req.body;
   validateAnswer(req.userId, 'key1', key1);
@@ -167,11 +161,10 @@ app.post('/decript', getUser, (req, res) => {
   const { key1, key2, key3, key4 } = req.body;
 
   if (user.readyForDecript) {
-    // Verificar que las claves proporcionadas sean las correctas
     if (key1 === "A1" && key2 === "JJ" && key3 === "9w" && key4 === "01") {
       const seed = key1 + key2 + key3 + key4;
       const decryptedMessage = encryptMessage(seed);
-      res.json({ message: '🎉🎂 Happy Nerd Birthday!!! 🧠🔒✨', encryptedMessage: decryptedMessage });
+      res.json({ message: '🎉🎂 Happy Nerdthday!!! 🧠🔒✨', encryptedMessage: decryptedMessage });
     } else {
       res.status(400).json({ message: 'The provided keys are incorrect.' });
     }
@@ -180,19 +173,6 @@ app.post('/decript', getUser, (req, res) => {
   }
 });
 
-// app.post('/decript', getUser, (req, res) => {
-//   const user = users[req.userId];
-
-//   if (user.readyForDecript) {
-//     const { key1, key2, key3, key4 } = user;
-//     const seed = key1.value + key2.value + key3.value + key4.value;
-//     const decryptedMessage = encryptMessage(seed);
-//     res.json({ message: 'Happy Nerd Birthday!!!', encryptedMessage: decryptedMessage });
-//   } else {
-//     res.status(400).json({ message: 'First unlock 4 keys.' });
-//   }
-// });
-
 app.listen(port, () => {
-  console.log(`Servidor corriendo en http://localhost:${port}`);
+  console.log(`Server running on http://localhost:${port}`);
 });

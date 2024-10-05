@@ -11,36 +11,36 @@ GET http://localhost:3000/key4
 
 
 ### Send answer1
-POST http://localhost:3000/key1
+POST https://renderbd.onrender.com/key1
 Content-Type: application/json
 
 {
    "key1": "11"
 }
 ### Send answer2
-POST http://localhost:3000/key2
+POST https://renderbd.onrender.com/key2
 Content-Type: application/json
 
 {
    "key2": "6"
 }
 ### Send answer3
-POST http://localhost:3000/key3
+POST https://renderbd.onrender.com/key3
 Content-Type: application/json
 
 {
-   "key3": "2"
+   "key3": "90"
 }
 ### Send answer4
-POST http://localhost:3000/key4
+POST https://renderbd.onrender.com/key4
 Content-Type: application/json
 
 {
-   "key4": "E"
+   "key4": 5
 }
 
 ### Send decript
-POST http://localhost:3000/decript
+POST https://renderbd.onrender.com/decript
 Content-Type: application/json
 
 {
