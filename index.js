@@ -64,6 +64,22 @@ function getUser(req, res, next) {
   next();
 }
 
+app.get('/', getUser, (req, res) => {
+  const message = `
+    Trivia... <br><br>
+    Use GET /key1; /key2; /key3; /key4; for questions.<br><br>
+    Use POST /key1<br>
+    Content-Type: application/json<br>
+    {<br>
+      "key1": "Value of the answer"<br>
+    }<br><br>
+    and take note of the responses.<br><br>
+    When you unlock all the 4 keys, you can decrypt it:<br>
+    GET /decrypt
+  `;
+  res.send(message);
+});
+
 // Pregunta correspondiente a cada key
 app.get('/key1', getUser, (req, res) => {
   const user = users[req.userId];
