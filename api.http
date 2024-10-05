@@ -15,28 +15,28 @@ POST http://localhost:3000/key1
 Content-Type: application/json
 
 {
-   "key1": "42"
+   "key1": "11"
 }
 ### Send answer2
 POST http://localhost:3000/key2
 Content-Type: application/json
 
 {
-   "key2": "81"
+   "key2": "6"
 }
 ### Send answer3
 POST http://localhost:3000/key3
 Content-Type: application/json
 
 {
-   "key3": "30"
+   "key3": "2"
 }
 ### Send answer4
 POST http://localhost:3000/key4
 Content-Type: application/json
 
 {
-   "key4": "4"
+   "key4": "E"
 }
 
 ### Send decript

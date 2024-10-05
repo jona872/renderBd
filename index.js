@@ -10,10 +10,10 @@ const users = {};
 
 // Lista de preguntas con sus respuestas
 const questions = [
-  { question: "¿Cuánto es 25 + 17?", answer: 42 },
-  { question: "¿Cuál es el cuadrado de 9?", answer: 81 },
-  { question: "¿Cuántos días tiene un mes?", answer: 30 },
-  { question: "¿Cuántas patas tiene un perro?", answer: 4 }
+  { question: "How many bits are needed to represent the number 2024 in binary?", answer: 11 },
+  { question: "A car accelerates uniformly from rest to 60 m/s in 10 seconds. What is the acceleration (in m/s²)?", answer: 6 },
+  { question: "In a binary tree, how many child nodes can a node have at most?", answer: 2 },
+  { question: "In Morse code, what letter is represented by a single dot?", answer: "e" }
 ];
 
 // Función para encriptar el mensaje con una clave
@@ -32,13 +32,22 @@ function generateUserId() {
 // Verificar respuestas y actualizar el estado del usuario
 function validateAnswer(userId, key, answer) {
   const user = users[userId];
-
-  // Verificamos si la respuesta es correcta
   const questionIndex = parseInt(key.replace('key', '')) - 1;
-  if (parseInt(answer) === questions[questionIndex].answer) {
-    user[key] = { status: 'pass', value: answer };
+  const correctAnswer = questions[questionIndex].answer;
+
+  // Verificamos si la respuesta es un número o una cadena de texto y comparamos
+  if (!isNaN(answer)) {
+    if (parseInt(answer) === correctAnswer) {
+      user[key] = { status: 'pass', value: answer };
+    } else {
+      user[key] = { status: 'fail', value: '' };
+    }
   } else {
-    user[key] = { status: 'fail', value: '' };
+    if (answer.trim().toLowerCase() === correctAnswer) {
+      user[key] = { status: 'pass', value: answer.trim().toLowerCase() };
+    } else {
+      user[key] = { status: 'fail', value: '' };
+    }
   }
 
   // Verificamos si el usuario está listo para decriptar
