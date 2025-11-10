@@ -26,7 +26,7 @@ function generateUserId() {
   return Date.now().toString(36);
 }
 
-// Verificar respuestas y actualizar el estado del usuario
+// Verificar respuestas y actualizar el estado del usuario sample
 function validateAnswer(userId, key, answer) {
   const user = users[userId];
   const questionIndex = parseInt(key.replace('key', '')) - 1;
